@@ -2,32 +2,70 @@
     "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
     "contentVersion": "1.0.0.1",
     "parameters": {
-        "Country": {
+        "Application Name": {
             "type": "string",
+            "defaultValue": "<Application name>"
+        },
+        "Country/SITS/IO": {
+            "type": "string",
+            "maxLength": 2,
+            "minLength": 2,
             "defaultValue": "ne",
             "allowedValues": [ "ne", "ea" ]
         },
-        "project": {
-            "type": "string",
-            "defaultValue": "<ProjectName>"
-        },
+
         "location": {
             "type": "string",
             "defaultValue": "East Asia",
             "allowedValues": [ "East Asia" ]
         },
+        "Tag description": {
+            "type": "string",
+            "minLength": 21,
+            "maxLength": 512,
+            "defaultValue": "<SHORT Description>"
+        },
+        "Tag Stage": {
+            "type": "string",
+            "defaultValue": "Live",
+            "allowedValues": [ "Live", "Test", "Dev", "Sandbox" ]
+        },
+        "Tag Administrator": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 512,
+            "defaultValue": "<Administrator>"
+        },
+        "Tag Deployment": {
+            "type": "string",
+            "allowedValues": [ "Manual", "Arm", "Tf", "Ps", "Cli" ]
+        },
         "tags": {
             "type": "object",
             "defaultValue": {
-                "Owner": "<NAME OF AUTOR>",
-                "Enviroment": "TEST",
-                "Project": "Arm Template"
+                "Application": "[parameters('Application Name')]",
+                "Country": "[parameters('Country/SITS/IO')]",
+                "description": "[parameters('Tag description')]",
+                "Stage": "[parameters('Tag Stage')]",
+                "Administrator": "[parameters('Tag Administrator')]",
+                "Deployment": "[parameters('Tag Deployment')]"
+
             }
         }
     },
     "variables": {
-        "rgName": "[concat('rg-',parameters('Country'), '-', parameters('project'))]"
+        "rgName": "[concat('rg-',parameters('Country/SITS/IO'), '-', parameters('Application Name'))]",
+        "FullTag": {
+            "Application": "[parameters('Application Name')]",
+            "Country": "[parameters('Country/SITS/IO')]",
+            "description": "[parameters('Tag description')]",
+            "Stage": "[parameters('Tag Stage')]",
+            "Administrator": "[parameters('Tag Administrator')]",
+            "Deployment": "[parameters('Tag Deployment')]"
+
+        }
     },
+
     "resources": [
         {
             "type": "Microsoft.Resources/resourceGroups",
@@ -35,7 +73,7 @@
             "location": "[parameters('location')]",
             "name": "[variables('rgName')]",
             "properties": {},
-            "tags": "[parameters('tags')]"
+            "tags": "[variables('FullTag')]"
         }
     ],
     "outputs": {}
