@@ -4,7 +4,7 @@
     "parameters": {
         "rgName": {
             "type": "string",
-            "defaultValue": "rg_Test_ArmTemplate"
+            "defaultValue": "TESTOVACI_gruba_131020205"
         },
         "location": {
             "type": "string",
@@ -13,11 +13,7 @@
         },
         "tags": {
             "type": "object",
-            "defaultValue": {
-                "Owner": "<NAME OF AUTOR>",
-                "Enviroment": "TEST",
-                "Project": "Arm Template"
-            }
+            "defaultValue": {"ENV":"TEST"}
         }
     },
     "variables": {},
