@@ -1,5 +1,5 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-08-01/subscriptionDeploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
     "contentVersion": "1.0.0.1",
     "parameters": {
         "rgName": {
@@ -24,10 +24,10 @@
     "resources": [
         {
             "type": "Microsoft.Resources/resourceGroups",
-            "apiVersion": "2020-06-01",
+            "apiVersion": "2019-08-01",
             "location": "[parameters('location')]",
             "name": "[parameters('rgName')]",
-            "properties": {},
+            "properties": {"mode": "Incremental"},
             "tags": "[parameters('tags')]"
         }
     ],
