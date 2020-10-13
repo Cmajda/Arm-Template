@@ -2,9 +2,14 @@
     "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
     "contentVersion": "1.0.0.1",
     "parameters": {
-        "rgName": {
+        "Country": {
             "type": "string",
-            "defaultValue": "rg_Test_ArmTemplate"
+            "defaultValue": "ne",
+            "allowedValues": [ "ne", "ea" ]
+        },
+        "project": {
+            "type": "string",
+            "defaultValue": "<ProjectName>"
         },
         "location": {
             "type": "string",
@@ -20,14 +25,16 @@
             }
         }
     },
-    "variables": {},
+    "variables": {
+        "rgName": "[concat('rg-',parameters('Country'), '-', parameters('project'))]"
+    },
     "resources": [
         {
             "type": "Microsoft.Resources/resourceGroups",
             "apiVersion": "2019-08-01",
             "location": "[parameters('location')]",
-            "name": "[parameters('rgName')]",
-            "properties": {"mode": "Incremental"},
+            "name": "[variables('rgName')]",
+            "properties": {},
             "tags": "[parameters('tags')]"
         }
     ],
