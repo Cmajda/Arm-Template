@@ -1,0 +1,35 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-08-01/subscriptionDeploymentTemplate.json#",
+    "contentVersion": "1.0.0.1",
+    "parameters": {
+        "rgName": {
+            "type": "string",
+            "defaultValue": "rg_Test_ArmTemplate"
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "East Asia",
+            "allowedValues": [ "East Asia" ]
+        },
+        "tags": {
+            "type": "object",
+            "defaultValue": {
+                "Owner": "<NAME OF AUTOR>",
+                "Enviroment": "TEST",
+                "Project": "Arm Template"
+            }
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Resources/resourceGroups",
+            "apiVersion": "2019-08-01",
+            "location": "[parameters('location')]",
+            "name": "[parameters('rgName')]",
+            "properties": {},
+            "tags": "[parameters('tags')]"
+        }
+    ],
+    "outputs": {}
+}
