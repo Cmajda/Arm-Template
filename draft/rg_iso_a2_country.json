@@ -1,0 +1,51 @@
+    {
+    "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+    "contentVersion": "1.0.0.1",
+    "parameters": {
+        "CountryString": {
+            "type": "string",
+            "metadata": { "Description": "Select a country from the list." },
+            "defaultValue": "United States",
+            "allowedValues": [ "United States", "Germany" ]
+        },
+        "CountryObject": {
+            "type": "object",
+            "defaultValue": {
+                "United States": "US",
+                "Germany": "DE",
+                "United Kingdom": "GB"
+            }
+        }
+    },
+    "variables": {
+        "OutputString": {
+            "type": "string",
+            "value": "[if(equals('United States', parameters('CountryString')), 'US','DE')]"
+        },
+        "Outputobject": {
+            "type": "string",
+            "value": "[if(equals('United States', parameters('CountryObject')), 'US','DE')]"
+        },
+        "rgName": "[concat('rg-',variables('Outputobject').value, '-rgname')]"
+    },
+
+    "resources": [
+        {
+            "type": "Microsoft.Resources/resourceGroups",
+            "apiVersion": "2019-08-01",
+            "location": "East Asia",
+            "name": "[variables('rgName')]",
+            "properties": {}
+        }
+    ],
+    "outputs": {
+        "OutputString": {
+            "type": "string",
+            "value": "[variables('OutputString').value]"
+        },
+        "Outputobject": {
+            "type": "string",
+            "value": "[variables('Outputobject').value]"
+        }
+    }
+}
