@@ -3,15 +3,18 @@
     "handler": "Microsoft.Azure.CreateUIDef",
     "version": "0.1.2-preview",
     "parameters": {
-         "basics": [
+        "resourceTypes": [
+            "microsoft.resources/resourcegroups"
+        ],
+        "basics": [
             {
-                "name": "location",
+                "name": "Region",
                 "type": "Microsoft.Common.DropDown",
                 "label": "Region",
-                "Value": "West US",
+                "defaultValue": "West US",
                 "toolTip": "Choose the Azure region that's right for you and your customers. Not every resource is available in every region.",
                 "constraints": {
-                    "required": true,
+                    "required": false,
                     "allowedValues": [
                         {
                             "label": "North Europe",
@@ -105,141 +108,6 @@
                             "value": "04"
                         }
                     ]
-                },
-                "visible": true
-            },
-            {
-                "name": "networkSecurityGroupRules",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Network Security Group Rules",
-                "defaultValue": "[[{\"name\":\"SSH\",\"properties\":{\"priority\":300,\"protocol\":\"TCP\",\"access\":\"Allow\",\"direction\":\"Inbound\",\"sourceAddressPrefix\":\"*\",\"sourcePortRange\":\"*\",\"destinationAddressPrefix\":\"*\",\"destinationPortRange\":\"22\"}}]",
-                "toolTip": "",
-                "constraints": {
-                    "required": false,
-                    "regex": "",
-                    "validationMessage": ""
-                },
-                "visible": true
-            },
-            {
-                "name": "subnetName",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Subnet Name",
-                "defaultValue": "default",
-                "toolTip": "",
-                "constraints": {
-                    "required": false,
-                    "regex": "",
-                    "validationMessage": ""
-                },
-                "visible": true
-            },
-            {
-                "name": "addressPrefixes",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Address Prefixes",
-                "defaultValue": "[[\"10.0.1.0/24\"]",
-                "toolTip": "",
-                "constraints": {
-                    "required": false,
-                    "regex": "",
-                    "validationMessage": ""
-                },
-                "visible": true
-            },
-            {
-                "name": "subnets",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Subnets",
-                "defaultValue": "[[{\"name\":\"default\",\"properties\":{\"addressPrefix\":\"10.0.1.0/24\"}}]",
-                "toolTip": "",
-                "constraints": {
-                    "required": false,
-                    "regex": "",
-                    "validationMessage": ""
-                },
-                "visible": true
-            },
-            {
-                "name": "publicIpAddressType",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Public Ip Address Type",
-                "defaultValue": "Dynamic",
-                "toolTip": "",
-                "constraints": {
-                    "required": false,
-                    "regex": "",
-                    "validationMessage": ""
-                },
-                "visible": true
-            },
-            {
-                "name": "publicIpAddressSku",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Public Ip Address Sku",
-                "defaultValue": "Basic",
-                "toolTip": "",
-                "constraints": {
-                    "required": false,
-                    "regex": "",
-                    "validationMessage": ""
-                },
-                "visible": true
-            },
-            {
-                "name": "osDiskType",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Os Disk Type",
-                "defaultValue": "Standard_LRS",
-                "toolTip": "",
-                "constraints": {
-                    "required": false,
-                    "regex": "",
-                    "validationMessage": ""
-                },
-                "visible": true
-            },
-            {
-                "name": "virtualMachineSize",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Virtual Machine Size",
-                "defaultValue": "Standard_B1ls",
-                "toolTip": "",
-                "constraints": {
-                    "required": false,
-                    "regex": "",
-                    "validationMessage": ""
-                },
-                "visible": true
-            },
-            {
-                "name": "adminUsername",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Admin Username",
-                "defaultValue": "admin123",
-                "toolTip": "",
-                "constraints": {
-                    "required": false,
-                    "regex": "",
-                    "validationMessage": ""
-                },
-                "visible": true
-            },
-            {
-                "name": "adminPassword",
-                "type": "Microsoft.Common.PasswordBox",
-                "label": {
-                    "password": "Admin Password",
-                    "confirmPassword": "Confirm password"
-                },
-                "toolTip": "",
-                "constraints": {
-                    "required": false,
-                    "regex": "",
-                    "validationMessage": ""
-                },
-                "options": {
-                    "hideConfirmation": true
                 },
                 "visible": true
             }
@@ -350,6 +218,174 @@
                         },
                         "visible": true
                     }
+                ]
+            },
+            {
+                "name": "Network",
+                "label": "Tab network",
+                "elements": [
+                    {
+                        "name": "networkSecurityGroupRules",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Network Security Group Rules",
+                        "defaultValue": "[[{\"name\":\"SSH\",\"properties\":{\"priority\":300,\"protocol\":\"TCP\",\"access\":\"Allow\",\"direction\":\"Inbound\",\"sourceAddressPrefix\":\"*\",\"sourcePortRange\":\"*\",\"destinationAddressPrefix\":\"*\",\"destinationPortRange\":\"22\"}}]",
+                        "toolTip": "",
+                        "constraints": {
+                            "required": false,
+                            "regex": "",
+                            "validationMessage": ""
+                        },
+                        "visible": true
+                    },
+                    {
+                        "name": "subnetName",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Subnet Name",
+                        "defaultValue": "default",
+                        "toolTip": "",
+                        "constraints": {
+                            "required": false,
+                            "regex": "",
+                            "validationMessage": ""
+                        },
+                        "visible": true
+                    },
+                    {
+                        "name": "addressPrefixes",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Address Prefixes",
+                        "defaultValue": "[[\"10.0.1.0/24\"]",
+                        "toolTip": "",
+                        "constraints": {
+                            "required": false,
+                            "regex": "",
+                            "validationMessage": ""
+                        },
+                        "visible": true
+                    },
+                    {
+                        "name": "subnets",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Subnets",
+                        "defaultValue": "[[{\"name\":\"default\",\"properties\":{\"addressPrefix\":\"10.0.1.0/24\"}}]",
+                        "toolTip": "",
+                        "constraints": {
+                            "required": false,
+                            "regex": "",
+                            "validationMessage": ""
+                        },
+                        "visible": true
+                    },
+                    {
+                        "name": "publicIpAddressType",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Public Ip Address Type",
+                        "defaultValue": "Dynamic",
+                        "toolTip": "",
+                        "constraints": {
+                            "required": false,
+                            "regex": "",
+                            "validationMessage": ""
+                        },
+                        "visible": true
+                    },
+                    {
+                        "name": "publicIpAddressSku",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Public Ip Address Sku",
+                        "defaultValue": "Basic",
+                        "toolTip": "",
+                        "constraints": {
+                            "required": false,
+                            "regex": "",
+                            "validationMessage": ""
+                        },
+                        "visible": true
+                    }
+                ]
+            },
+            {
+                "name": "VirtualMachine",
+                "label": "Tab Virtual machine",
+                "elements": [
+                    {
+                        "name": "osDiskType",
+                        "type": "Microsoft.Common.DropDown",
+                        "label": "Os Disk Type",
+                        "defaultValue": "Standard LRS",
+                        "toolTip": "",
+                        "constraints": {
+                            "required": true,
+                            "regex": "",
+                            "validationMessage": "Validační zpráva",
+                             "allowedValues": [
+                                {
+                                    "label": "Standard LRS",
+                                    "value": "Standard_LRS"
+                                },
+                                {
+                                    "label": "Premium LRS",
+                                    "value": "Premium_LRS"
+                                },
+                                {
+                                    "label": "StandardSSD LRS",
+                                    "value": "StandardSSD_LRS"
+                                },
+                                {
+                                    "label": "UltraSSD LRS",
+                                    "value": "UltraSSD_LRS"
+                                }
+                            ]
+                        },
+                        "visible": true
+                    },
+                    {
+                        "name": "virtualMachineSize",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Virtual Machine Size",
+                        "defaultValue": "Standard_B1ls",
+                        "toolTip": "",
+                        "constraints": {
+                            "required": false,
+                            "regex": "",
+                            "validationMessage": ""
+                        },
+                        "visible": true
+                    },
+                    {
+                        "name": "adminUsername",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Admin Username",
+                        "defaultValue": "admin123",
+                        "toolTip": "",
+                        "constraints": {
+                            "required": false,
+                            "regex": "",
+                            "validationMessage": ""
+                        },
+                        "visible": true
+                    },
+                        {
+                                "name": "adminPassword",
+                                "type": "Microsoft.Compute.CredentialsCombo",
+                                "label": {
+                                    "password": "Password",
+                                    "confirmPassword": "Confirm password"
+                                },
+                                "toolTip": {
+                                    "password": ""
+                                },
+                                "constraints": {
+                                    "required": true,
+                                    "customPasswordRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{12,}$",
+                                    "customValidationMessage": "The password must be alphanumeric, contain at least 12 characters, and have at least 1 letter and 1 number."
+                                },
+                                "options": {
+                                    "hideConfirmation": false
+                                },
+                                "osPlatform": "Windows",
+                                "visible": true
+                            }
                 ]
             }
         ],
