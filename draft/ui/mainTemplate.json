@@ -3,19 +3,16 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
 
-        "templateBaseUrl": {
+        "Region": {
             "type": "string",
-            "metadata": {
-                "description": "Base URL for Marketplace",
-                "artifactsBaseUrl": ""
-            },
-            "defaultValue": "https://github.com/Cmajda/Arm-Template/tree/main/draft/ui/main"
-        },
-        "location": {
-            "type": "string",
-            "metadata": {
-                "description": "The location where the solution will be deployed."
-            }
+            "metadata": { "Description": "Choose the Azure region that's right for you and your customers. Not every resource is available in every region." },
+            "allowedValues": [
+                "North Europe",
+                "West Europe",
+                "West US"
+
+            ],
+            "defaultValue": "West US"
         },
         "Application Name": {
             "type": "string",
