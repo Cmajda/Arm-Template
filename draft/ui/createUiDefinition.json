@@ -3,18 +3,15 @@
     "handler": "Microsoft.Azure.CreateUIDef",
     "version": "0.1.2-preview",
     "parameters": {
-        "resourceTypes": [
-            "microsoft.resources/resourcegroups"
-        ],
-        "basics": [
+         "basics": [
             {
-                "name": "Region",
+                "name": "location",
                 "type": "Microsoft.Common.DropDown",
                 "label": "Region",
                 "Value": "West US",
                 "toolTip": "Choose the Azure region that's right for you and your customers. Not every resource is available in every region.",
                 "constraints": {
-                    "required": false,
+                    "required": true,
                     "allowedValues": [
                         {
                             "label": "North Europe",
@@ -357,25 +354,7 @@
             }
         ],
         "outputs": {
-            "Region": "[basics('Region').value]",
-            "Application Name": "[basics('Application Name').defaultValue]",
-            "Country/SITS/IO": "[basics('Country/SITS/IO')]",
-            "Index/Suffix": "[basics('Index/Suffix')]",
-            "Tag description": "[steps('Tag description')]",
-            "Tag Stage": "[steps('Tag Stage')]",
-            "Tag Customer": "[steps('Tag Customer')]",
-            "Tag Administrator": "[steps('Tag Administrator')]",
-            "Tag Deployment": "[steps('Tag Deployment')]",
-            "networkSecurityGroupRules": "[basics('networkSecurityGroupRules')]",
-            "subnetName": "[basics('subnetName')]",
-            "addressPrefixes": "[basics('addressPrefixes')]",
-            "subnets": "[basics('subnets')]",
-            "publicIpAddressType": "[basics('publicIpAddressType')]",
-            "publicIpAddressSku": "[basics('publicIpAddressSku')]",
-            "osDiskType": "[basics('osDiskType')]",
-            "virtualMachineSize": "[basics('virtualMachineSize')]",
-            "adminUsername": "[basics('adminUsername')]",
-            "adminPassword": "[basics('adminPassword')]"
+            "Application Name": "[basics('Application Name').defaultValue]"
         }
     }
 }
