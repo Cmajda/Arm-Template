@@ -2,16 +2,20 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "Region": {
-            "type": "string",
-            "metadata": { "Description": "Choose the Azure region that's right for you and your customers. Not every resource is available in every region." },
-            "allowedValues": [
-                "North Europe",
-                "West Europe",
-                "West US"
 
-            ],
-            "defaultValue": "West US"
+        "templateBaseUrl": {
+            "type": "string",
+            "metadata": {
+                "description": "Base URL for Marketplace",
+                "artifactsBaseUrl": ""
+            },
+            "defaultValue": "https://github.com/Cmajda/Arm-Template/tree/main/draft/ui/main"
+        },
+        "location": {
+            "type": "string",
+            "metadata": {
+                "description": "The location where the solution will be deployed."
+            }
         },
         "Application Name": {
             "type": "string",
@@ -599,7 +603,7 @@
     "outputs": {
         "adminUsername": {
             "type": "string",
-            "value": "[parameters('adminUsername')]"
+            "value": "[parameters('Application Name')]"
         }
     }
 }
