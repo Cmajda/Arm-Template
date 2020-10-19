@@ -112,107 +112,6 @@
                 "visible": true
             },
             {
-                "name": "Tag description",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Tag description",
-                "defaultValue": "Testování v rámci arm template pro vytvoření VMs",
-                "toolTip": "Short description of resource group. For example \"In order to test the new site.\"",
-                "constraints": {
-                    "required": false,
-                    "regex": "",
-                    "validationMessage": ""
-                },
-                "visible": true
-            },
-            {
-                "name": "Tag Stage",
-                "type": "Microsoft.Common.DropDown",
-                "label": "Tag Stage",
-                "defaultValue": "Live",
-                "toolTip": "Select a value of the \"tag Stage\"",
-                "constraints": {
-                    "required": false,
-                    "allowedValues": [
-                        {
-                            "label": "Live",
-                            "value": "Live"
-                        },
-                        {
-                            "label": "Test",
-                            "value": "Test"
-                        },
-                        {
-                            "label": "Dev",
-                            "value": "Dev"
-                        },
-                        {
-                            "label": "Sandbox",
-                            "value": "Sandbox"
-                        }
-                    ]
-                },
-                "visible": true
-            },
-            {
-                "name": "Tag Customer",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Tag Customer",
-                "defaultValue": "MFS",
-                "toolTip": "Name of customer for example \"MFS\"",
-                "constraints": {
-                    "required": false,
-                    "regex": "",
-                    "validationMessage": ""
-                },
-                "visible": true
-            },
-            {
-                "name": "Tag Administrator",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Tag Administrator",
-                "defaultValue": "Cmajda",
-                "toolTip": "Name of administrator for example \"Jan Koudela\"",
-                "constraints": {
-                    "required": false,
-                    "regex": "",
-                    "validationMessage": ""
-                },
-                "visible": true
-            },
-            {
-                "name": "Tag Deployment",
-                "type": "Microsoft.Common.DropDown",
-                "label": "Tag Deployment",
-                "defaultValue": "Arm",
-                "toolTip": "Select a value of the \"Tag Deployment\"",
-                "constraints": {
-                    "required": false,
-                    "allowedValues": [
-                        {
-                            "label": "Manual",
-                            "value": "Manual"
-                        },
-                        {
-                            "label": "Arm",
-                            "value": "Arm"
-                        },
-                        {
-                            "label": "Tf",
-                            "value": "Tf"
-                        },
-                        {
-                            "label": "Ps",
-                            "value": "Ps"
-                        },
-                        {
-                            "label": "Cli",
-                            "value": "Cli"
-                        }
-                    ]
-                },
-                "visible": true
-            },
-            {
                 "name": "networkSecurityGroupRules",
                 "type": "Microsoft.Common.TextBox",
                 "label": "Network Security Group Rules",
@@ -350,42 +249,109 @@
         ],
         "steps": [
             {
-                "name": "storageConfig",
-                "label": "Storage settings",
+                "name": "tags",
+                "label": "ALL Tags",
                 "elements": [
                     {
-                        "name": "storageAccounts",
-                        "type": "Microsoft.Storage.MultiStorageAccountCombo",
-                        "label": {
-                            "prefix": "Storage account name prefix",
-                            "type": "Storage account type"
-                        },
-                        "defaultValue": {
-                            "prefix": "stracct",
-                            "type": "Standard_LRS"
-                        },
+                        "name": "Tag description",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Tag description",
+                        "defaultValue": "Testování v rámci arm template pro vytvoření VMs",
+                        "toolTip": "Short description of resource group. For example \"In order to test the new site.\"",
                         "constraints": {
-                            "allowedTypes": [
-                                "Premium_LRS",
-                                "Standard_LRS",
-                                "Standard_GRS"
+                            "required": false,
+                            "regex": "",
+                            "validationMessage": ""
+                        },
+                        "visible": true
+                    },
+                    {
+                        "name": "Tag Stage",
+                        "type": "Microsoft.Common.DropDown",
+                        "label": "Tag Stage",
+                        "defaultValue": "Live",
+                        "toolTip": "Select a value of the \"tag Stage\"",
+                        "constraints": {
+                            "required": false,
+                            "allowedValues": [
+                                {
+                                    "label": "Live",
+                                    "value": "Live"
+                                },
+                                {
+                                    "label": "Test",
+                                    "value": "Test"
+                                },
+                                {
+                                    "label": "Dev",
+                                    "value": "Dev"
+                                },
+                                {
+                                    "label": "Sandbox",
+                                    "value": "Sandbox"
+                                }
                             ]
                         },
-                        "count": 2
-                    }
-                ]
-            },
-            {
-                "name": "tags",
-                "label": "Tags",
-                "elements": [
+                        "visible": true
+                    },
                     {
-                        "name": "tagsByResource",
-                        "type": "Microsoft.Common.TagsByResource",
-                        "resources": [
-                            "Microsoft.Storage/storageAccounts",
-                            "Microsoft.Compute/virtualMachines"
-                        ]
+                        "name": "Tag Customer",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Tag Customer",
+                        "defaultValue": "MFS",
+                        "toolTip": "Name of customer for example \"MFS\"",
+                        "constraints": {
+                            "required": false,
+                            "regex": "",
+                            "validationMessage": ""
+                        },
+                        "visible": true
+                    },
+                    {
+                        "name": "Tag Administrator",
+                        "type": "Microsoft.Common.TextBox",
+                        "label": "Tag Administrator",
+                        "defaultValue": "Cmajda",
+                        "toolTip": "Name of administrator for example \"Jan Koudela\"",
+                        "constraints": {
+                            "required": false,
+                            "regex": "",
+                            "validationMessage": ""
+                        },
+                        "visible": true
+                    },
+                    {
+                        "name": "Tag Deployment",
+                        "type": "Microsoft.Common.DropDown",
+                        "label": "Tag Deployment",
+                        "defaultValue": "Arm",
+                        "toolTip": "Select a value of the \"Tag Deployment\"",
+                        "constraints": {
+                            "required": false,
+                            "allowedValues": [
+                                {
+                                    "label": "Manual",
+                                    "value": "Manual"
+                                },
+                                {
+                                    "label": "Arm",
+                                    "value": "Arm"
+                                },
+                                {
+                                    "label": "Tf",
+                                    "value": "Tf"
+                                },
+                                {
+                                    "label": "Ps",
+                                    "value": "Ps"
+                                },
+                                {
+                                    "label": "Cli",
+                                    "value": "Cli"
+                                }
+                            ]
+                        },
+                        "visible": true
                     }
                 ]
             }
@@ -395,11 +361,11 @@
             "Application Name": "[basics('Application Name')]",
             "Country/SITS/IO": "[basics('Country/SITS/IO')]",
             "Index/Suffix": "[basics('Index/Suffix')]",
-            "Tag description": "[basics('Tag description')]",
-            "Tag Stage": "[basics('Tag Stage')]",
-            "Tag Customer": "[basics('Tag Customer')]",
-            "Tag Administrator": "[basics('Tag Administrator')]",
-            "Tag Deployment": "[basics('Tag Deployment')]",
+            "Tag description": "[steps('Tag description')]",
+            "Tag Stage": "[steps('Tag Stage')]",
+            "Tag Customer": "[steps('Tag Customer')]",
+            "Tag Administrator": "[steps('Tag Administrator')]",
+            "Tag Deployment": "[steps('Tag Deployment')]",
             "networkSecurityGroupRules": "[basics('networkSecurityGroupRules')]",
             "subnetName": "[basics('subnetName')]",
             "addressPrefixes": "[basics('addressPrefixes')]",
