@@ -11,7 +11,7 @@
                 "name": "Region",
                 "type": "Microsoft.Common.DropDown",
                 "label": "Region",
-                "defaultValue": "West US",
+                "Value": "West US",
                 "toolTip": "Choose the Azure region that's right for you and your customers. Not every resource is available in every region.",
                 "constraints": {
                     "required": false,
@@ -357,8 +357,8 @@
             }
         ],
         "outputs": {
-            "Region": "[basics('Region')]",
-            "Application Name": "[basics('Application Name')]",
+            "Region": "[basics('Region').value]",
+            "Application Name": "[basics('Application Name').defaultValue]",
             "Country/SITS/IO": "[basics('Country/SITS/IO')]",
             "Index/Suffix": "[basics('Index/Suffix')]",
             "Tag description": "[steps('Tag description')]",
