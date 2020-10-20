@@ -76,6 +76,12 @@
             "defaultValue": "Arm",
             "allowedValues": [ "Manual", "Arm", "Tf", "Ps", "Cli" ]
         },
+        "virtualNetworkName": {
+            "type": "string",
+            "metadata": {
+                "description": "New or Existing VNet Name"
+            }
+        },
         "virtualNetworkNewOrExisting": {
             "type": "string",
             "metadata": {
@@ -84,10 +90,28 @@
             "allowedValues": [ "existing" ],
             "defaultValue": "existing"
         },
+        "virtualNetworkAddressPrefix": {
+            "type": "string",
+            "metadata": {
+                "description": "VNet address prefix"
+            }
+        },
         "virtualNetworkResourceGroup": {
             "type": "string",
             "metadata": {
                 "description": "Resource group of the VNet"
+            }
+        },
+        "subnetName": {
+            "type": "string",
+            "metadata": {
+                "description": "New or Existing subnet Name"
+            }
+        },
+        "subnetAddressPrefix": {
+            "type": "string",
+            "metadata": {
+                "description": "Subnet address prefix"
             }
         },
         "networkSecurityGroupRules": {
@@ -108,7 +132,7 @@
                 }
             ]
         },
-                     "publicIpAddressType": {
+        "publicIpAddressType": {
             "type": "String",
             "defaultValue": "Dynamic"
         },
@@ -146,7 +170,7 @@
         "networkInterfaceName": "[concat('nic-',variables('CountryObject').value[parameters('Country/SITS/IO')], '-', parameters('Application Name'),'-',parameters('Index/Suffix'))]",
         "networkSecurityGroupName": "[concat('nsg-',variables('CountryObject').value[parameters('Country/SITS/IO')], '-', parameters('Application Name'),'-',parameters('Index/Suffix'))]",
         "publicIpAddressName": "[concat('pip-',variables('CountryObject').value[parameters('Country/SITS/IO')], '-', parameters('Application Name'),'-',parameters('Index/Suffix'))]",
-        "virtualNetworkName": "[concat('vin-',variables('CountryObject').value[parameters('Country/SITS/IO')], '-', parameters('Application Name'),'-',parameters('Index/Suffix'))]",
+        "virtualNetworkName": "[concat('vin-',variables('CountryObject').value[parameters('Country/SITS/IO')], '-', parameters('virtualNetworkName'),'-',parameters('Index/Suffix'))]",
         "virtualMachineName": "[concat('vm',variables('CountryObject').value[parameters('Country/SITS/IO')],parameters('Application Name'),parameters('Index/Suffix'))]",
         "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]",
         "vnetId": {
@@ -590,9 +614,16 @@
             "location": "[resourceGroup().location]",
             "properties": {
                 "addressSpace": {
-                    "addressPrefixes": "[parameters('addressPrefixes')]"
+                    "addressPrefixes": "[parameters('virtualNetworkAddressPrefix')]"
                 },
-                "subnets": "[parameters('subnets')]"
+                  "subnets": [
+                    {
+                        "name": "[parameters('subnetName')]",
+                        "properties": {
+                            "addressPrefix": "[parameters('subnetAddressPrefix')]"
+                        }
+                    }
+                ]
             },
             "tags": "[variables('FullTag')]"
         }
