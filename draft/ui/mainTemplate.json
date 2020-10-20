@@ -108,28 +108,7 @@
                 }
             ]
         },
-        "subnetName": {
-            "type": "String",
-            "defaultValue": "default"
-        },
-        "addressPrefixes": {
-            "type": "Array",
-            "defaultValue": [
-                "10.0.1.0/24"
-            ]
-        },
-        "subnets": {
-            "type": "Array",
-            "defaultValue": [
-                {
-                    "name": "default",
-                    "properties": {
-                        "addressPrefix": "10.0.1.0/24"
-                    }
-                }
-            ]
-        },
-        "publicIpAddressType": {
+                     "publicIpAddressType": {
             "type": "String",
             "defaultValue": "Dynamic"
         },
@@ -486,7 +465,7 @@
             "name": "[variables('networkInterfaceName')]",
             "apiVersion": "2018-10-01",
             "location": "[resourceGroup().location]",
-             "properties": {
+            "properties": {
                 "ipConfigurations": [
                     {
                         "name": "ipconfig1",
@@ -511,9 +490,9 @@
                 "[concat('Microsoft.Network/publicIpAddresses/', variables('publicIpAddressName'))]",
                 "[resourceId('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
             ],
-           
-            
-                        "tags": "[variables('FullTag')]"
+
+
+            "tags": "[variables('FullTag')]"
         },
         {
             "name": "[variables('networkSecurityGroupName')]",
