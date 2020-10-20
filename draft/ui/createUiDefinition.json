@@ -238,7 +238,6 @@
                         },
                         "visible": true
                     },
-
                     {
                         "name": "publicIpAddressType",
                         "type": "Microsoft.Common.TextBox",
@@ -293,16 +292,30 @@
                         "visible": true
                     },
                     {
-                        "name": "virtualMachineSize",
-                        "type": "Microsoft.Common.TextBox",
-                        "label": "Virtual Machine Size",
-                        "defaultValue": "Standard_B1ls",
+                        "name": "vmsize",
+                        "type": "Microsoft.Compute.SizeSelector",
+                        "label": "Size",
                         "toolTip": "",
+                        "recommendedSizes": [
+                            "Standard_B1ls"
+                        ],
                         "constraints": {
-                            "required": false,
-                            "regex": "",
-                            "validationMessage": ""
+                            "allowedSizes": [],
+                            "excludedSizes": [],
+                            "numAvailabilityZonesRequired": 3,
+                            "zone": "3"
                         },
+                        "options": {
+                            "hideDiskTypeFilter": false
+                        },
+                        "osPlatform": "Linux",
+                        "imageReference": {
+                            "publisher": "Canonical",
+                            "offer": "UbuntuServer",
+                            "sku": "218.04-LTS",
+                            "version": "latest"
+                        },
+                        "count": 2,
                         "visible": true
                     },
                     {
@@ -349,7 +362,9 @@
             "virtualNetworkAddressPrefix": "[first(steps('Network').vnet.addressPrefixes)]",
             "virtualNetworkResourceGroup": "[steps('Network').vnet.resourceGroup]",
             "subnetName": "[steps('Network').vnet.subnets.subnet1.name]",
-            "subnetAddressPrefix": "[steps('Network').vnet.subnets.subnet1.addressPrefix]"
+            "subnetAddressPrefix": "[steps('Network').vnet.subnets.subnet1.addressPrefix]",
+            "virtualMachineSize": "[steps('VirtualMachine').vmsize]"
+            
         }
     }
 }
