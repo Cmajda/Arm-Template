@@ -37,20 +37,12 @@
                             "virtualNetwork": "Virtual Network",
                             "subnets": "Subnets"
                         },
-                        "defaultValue": {
-                            "name": "vmx-vnet",
-                            "addressPrefixSize": "/16"
-                        },
                         "constraints": {
                             "minAddressPrefixSize": "/24"
                         },
                         "subnets": {
                             "subnet1": {
                                 "label": "Subnet",
-                                "defaultValue": {
-                                    "name": "vmx-subnet",
-                                    "addressPrefixSize": "/24"
-                                },
                                 "constraints": {
                                     "minAddressPrefixSize": "/29",
                                     "minAddressCount": 8,
