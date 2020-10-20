@@ -406,7 +406,14 @@
             }
         ],
         "outputs": {
-            "Application Name": "[basics('Application Name').defaultValue]"
+            "Application Name": "[basics('Application Name').defaultValue]",
+            "location": "[location()]",
+            "virtualNetworkName": "[steps('Network').vnet.name]",
+            "virtualNetworkNewOrExisting": "[steps('Network').vnet.newOrExisting]",
+            "virtualNetworkAddressPrefix": "[first(steps('Network').vnet.addressPrefixes)]",
+            "virtualNetworkResourceGroup": "[steps('Network').vnet.resourceGroup]",
+            "subnetName": "[steps('Network').vnet.subnets.subnet1.name]",
+            "subnetAddressPrefix": "[steps('Network').vnet.subnets.subnet1.addressPrefix]"
         }
     }
 }
