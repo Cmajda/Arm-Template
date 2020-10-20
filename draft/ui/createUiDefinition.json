@@ -263,45 +263,7 @@
                         },
                         "visible": true
                     },
-                    {
-                        "name": "subnetName",
-                        "type": "Microsoft.Common.TextBox",
-                        "label": "Subnet Name",
-                        "defaultValue": "default",
-                        "toolTip": "",
-                        "constraints": {
-                            "required": false,
-                            "regex": "",
-                            "validationMessage": ""
-                        },
-                        "visible": true
-                    },
-                    {
-                        "name": "addressPrefixes",
-                        "type": "Microsoft.Common.TextBox",
-                        "label": "Address Prefixes",
-                        "defaultValue": "[[\"10.0.1.0/24\"]",
-                        "toolTip": "",
-                        "constraints": {
-                            "required": false,
-                            "regex": "",
-                            "validationMessage": ""
-                        },
-                        "visible": true
-                    },
-                    {
-                        "name": "subnets",
-                        "type": "Microsoft.Common.TextBox",
-                        "label": "Subnets",
-                        "defaultValue": "[[{\"name\":\"default\",\"properties\":{\"addressPrefix\":\"10.0.1.0/24\"}}]",
-                        "toolTip": "",
-                        "constraints": {
-                            "required": false,
-                            "regex": "",
-                            "validationMessage": ""
-                        },
-                        "visible": true
-                    },
+                    
                     {
                         "name": "publicIpAddressType",
                         "type": "Microsoft.Common.TextBox",
