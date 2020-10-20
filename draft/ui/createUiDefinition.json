@@ -3,10 +3,24 @@
     "handler": "Microsoft.Azure.CreateUIDef",
     "version": "0.1.2-preview",
     "parameters": {
+        "config": {
+            "isWizard": true,
+            "basics": {}
+        },
         "resourceTypes": [
             "microsoft.resources/resourcegroups"
         ],
         "basics": [
+            {
+                "name": "infoBox1",
+                "type": "Microsoft.Common.InfoBox",
+                "visible": true,
+                "options": {
+                    "icon": "Info",
+                    "text": "Work in progress. All values are set to default values."
+
+                }
+            },
             {
                 "name": "Application Name",
                 "type": "Microsoft.Common.TextBox",
@@ -226,6 +240,17 @@
                         }
                     },
                     {
+                        "name": "infoBox2",
+                        "type": "Microsoft.Common.InfoBox",
+                        "visible": true,
+                        "options": {
+                            "icon": "Info",
+                            "text": "What values are required for Network Security Group Rules?."
+                        }
+                    },
+
+
+                    {
                         "name": "networkSecurityGroupRules",
                         "type": "Microsoft.Common.TextBox",
                         "label": "Network Security Group Rules",
@@ -364,7 +389,7 @@
             "subnetName": "[steps('Network').vnet.subnets.subnet1.name]",
             "subnetAddressPrefix": "[steps('Network').vnet.subnets.subnet1.addressPrefix]",
             "virtualMachineSize": "[steps('VirtualMachine').vmsize]"
-            
+
         }
     }
 }
