@@ -171,7 +171,7 @@
         "virtualMachineName": "[concat('vm',variables('CountryObject').value[parameters('Country/SITS/IO')],parameters('Application Name'),parameters('Index/Suffix'))]",
         "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroupName'))]",
         "vnetId": {
-            "new": "denied",
+            "new": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
             "existing": "[resourceId(parameters('virtualNetworkResourceGroup'),'Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]"
         },
         "subnetRef": "[concat(variables('vnetId')[parameters('virtualNetworkNewOrExisting')],'/subnets/',parameters('subnetName'))]",
@@ -482,17 +482,11 @@
             "tags": "[variables('FullTag')]"
         },
         {
-            "name": "[variables('networkInterfaceName')]",
             "type": "Microsoft.Network/networkInterfaces",
+            "name": "[variables('networkInterfaceName')]",
             "apiVersion": "2018-10-01",
             "location": "[resourceGroup().location]",
-            "dependsOn": [
-                "[concat('Microsoft.Network/networkSecurityGroups/', variables('networkSecurityGroupName'))]",
-                "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]",
-                "[concat('Microsoft.Network/publicIpAddresses/', variables('publicIpAddressName'))]",
-                "[resourceId('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
-            ],
-            "properties": {
+             "properties": {
                 "ipConfigurations": [
                     {
                         "name": "ipconfig1",
@@ -502,7 +496,7 @@
                             },
                             "privateIPAllocationMethod": "Dynamic",
                             "publicIpAddress": {
-                                "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/publicIpAddresses', variables('publicIpAddressName'))]"
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]"
                             }
                         }
                     }
@@ -511,6 +505,13 @@
                     "id": "[variables('nsgId')]"
                 }
             },
+            "dependsOn": [
+                "[concat('Microsoft.Network/networkSecurityGroups/', variables('networkSecurityGroupName'))]",
+                "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]",
+                "[concat('Microsoft.Network/publicIpAddresses/', variables('publicIpAddressName'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
+            ],
+           
             
                         "tags": "[variables('FullTag')]"
         },
