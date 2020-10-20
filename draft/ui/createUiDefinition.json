@@ -8,31 +8,6 @@
         ],
         "basics": [
             {
-                "name": "Region",
-                "type": "Microsoft.Common.DropDown",
-                "label": "Region",
-                "defaultValue": "West US",
-                "toolTip": "Choose the Azure region that's right for you and your customers. Not every resource is available in every region.",
-                "constraints": {
-                    "required": false,
-                    "allowedValues": [
-                        {
-                            "label": "North Europe",
-                            "value": "North Europe"
-                        },
-                        {
-                            "label": "West Europe",
-                            "value": "West Europe"
-                        },
-                        {
-                            "label": "West US",
-                            "value": "West US"
-                        }
-                    ]
-                },
-                "visible": true
-            },
-            {
                 "name": "Application Name",
                 "type": "Microsoft.Common.TextBox",
                 "label": "Application Name",
@@ -263,7 +238,7 @@
                         },
                         "visible": true
                     },
-                    
+
                     {
                         "name": "publicIpAddressType",
                         "type": "Microsoft.Common.TextBox",
@@ -368,7 +343,6 @@
             }
         ],
         "outputs": {
-            "Application Name": "[basics('Application Name').defaultValue]",
             "location": "[location()]",
             "virtualNetworkName": "[steps('Network').vnet.name]",
             "virtualNetworkNewOrExisting": "[steps('Network').vnet.newOrExisting]",
