@@ -7,8 +7,7 @@
             "metadata": {
                 "title": "VM Name",
                 "description": "This is the name of the your VM"
-            },
-            "defaultValue": "nazevpc"
+            }
         },
 
 
@@ -16,45 +15,40 @@
             "type": "string",
             "metadata": {
                 "description": "New or Existing VNet Name"
-            },
-            "defaultValue": "neu-vnet"
+            }
         },
         "virtualNetworkNewOrExisting": {
             "type": "string",
             "metadata": {
                 "description": "Boolean indicating whether the VNet is new or existing"
             },
-            "allowedValues": [ "existing", "new" ],
+            "allowedValues": [ "existing" ],
             "defaultValue": "existing"
         },
         "virtualNetworkAddressPrefix": {
             "type": "string",
             "metadata": {
                 "description": "VNet address prefix"
-            },
-            "defaultValue": "10.1.0.0/16"
+            }
         },
         "virtualNetworkResourceGroup": {
             "type": "string",
             "metadata": {
                 "description": "Resource group of the VNet"
-            },
-            "defaultValue": "network-rg"
+            }
         },
 
         "subnetName": {
             "type": "string",
             "metadata": {
                 "description": "New or Existing subnet Name"
-            },
-            "defaultValue": "default"
+            }
         },
         "subnetAddressPrefix": {
             "type": "string",
             "metadata": {
                 "description": "Subnet address prefix"
-            },
-            "defaultValue": "10.1.0.0/24"
+            }
         }
     },
     "variables": {
