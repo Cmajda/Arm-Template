@@ -310,33 +310,23 @@
                 "elements": [
                     {
                         "name": "osDiskType",
-                        "type": "Microsoft.Common.DropDown",
-                        "label": "Os Disk Type",
-                        "defaultValue": "Standard LRS",
-                        "toolTip": "",
+                        "type": "Microsoft.Storage.MultiStorageAccountCombo",
+                        "label": {
+                            "prefix": "Storage account name prefix",
+                            "type": "Storage account type"
+                        },
+                        "defaultValue": {
+                            "prefix": "autogenerate",
+                            "type": "Standard_LRS"
+                        },
                         "constraints": {
-                            "required": true,
-                            "regex": "",
-                            "validationMessage": "Validační zpráva",
-                             "allowedValues": [
-                                {
-                                    "label": "Standard LRS",
-                                    "value": "Standard_LRS"
-                                },
-                                {
-                                    "label": "Premium LRS",
-                                    "value": "Premium_LRS"
-                                },
-                                {
-                                    "label": "StandardSSD LRS",
-                                    "value": "StandardSSD_LRS"
-                                },
-                                {
-                                    "label": "UltraSSD LRS",
-                                    "value": "UltraSSD_LRS"
-                                }
+                            "allowedTypes": [
+                                "Premium_LRS",
+                                "Standard_LRS",
+                                "Standard_GRS"
                             ]
                         },
+                        "count": 2,
                         "visible": true
                     },
                     {
@@ -365,27 +355,27 @@
                         },
                         "visible": true
                     },
-                        {
-                                "name": "adminPassword",
-                                "type": "Microsoft.Compute.CredentialsCombo",
-                                "label": {
-                                    "password": "Password",
-                                    "confirmPassword": "Confirm password"
-                                },
-                                "toolTip": {
-                                    "password": ""
-                                },
-                                "constraints": {
-                                    "required": true,
-                                    "customPasswordRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{12,}$",
-                                    "customValidationMessage": "The password must be alphanumeric, contain at least 12 characters, and have at least 1 letter and 1 number."
-                                },
-                                "options": {
-                                    "hideConfirmation": false
-                                },
-                                "osPlatform": "Windows",
-                                "visible": true
-                            }
+                    {
+                        "name": "adminPassword",
+                        "type": "Microsoft.Compute.CredentialsCombo",
+                        "label": {
+                            "password": "Password",
+                            "confirmPassword": "Confirm password"
+                        },
+                        "toolTip": {
+                            "password": ""
+                        },
+                        "constraints": {
+                            "required": true,
+                            "customPasswordRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{12,}$",
+                            "customValidationMessage": "The password must be alphanumeric, contain at least 12 characters, and have at least 1 letter and 1 number."
+                        },
+                        "options": {
+                            "hideConfirmation": false
+                        },
+                        "osPlatform": "Windows",
+                        "visible": true
+                    }
                 ]
             }
         ],
