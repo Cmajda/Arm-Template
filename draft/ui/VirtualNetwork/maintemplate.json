@@ -52,8 +52,8 @@
         }
     },
     "variables": {
-        "publicIPAddressName": "[concat(uniqueString(resourceGroup().id),'IP')]",
-        "nicName": "[concat(parameters('vmName'),'Nic')]",
+        "publicIPAddressName": "nazevVerejneIp-01",
+        "nicName": "nazevsite-01",
         "vnetId": {
             "new": "[resourceId('Microsoft.Network/virtualNetworks',parameters('virtualNetworkName'))]",
             "existing": "[resourceId(parameters('virtualNetworkResourceGroup'),'Microsoft.Network/virtualNetworks',parameters('virtualNetworkName'))]"
@@ -125,7 +125,7 @@
     "outputs": {
         "output1": {
             "type": "string",
-            "value": "Verze_1.0.0."
+            "value": "Verze_1.1.0."
         }
     }
 }
