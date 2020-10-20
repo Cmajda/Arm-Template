@@ -2,7 +2,12 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-
+        "virtualNetworkName": {
+            "type": "string",
+            "metadata": {
+                "description": "New or Existing VNet Name"
+            }
+        },
         "virtualNetworkNewOrExisting": {
             "type": "string",
             "metadata": {
@@ -97,12 +102,7 @@
             "defaultValue": "Arm",
             "allowedValues": [ "Manual", "Arm", "Tf", "Ps", "Cli" ]
         },
-        "virtualNetworkName": {
-            "type": "string",
-            "metadata": {
-                "description": "New or Existing VNet Name"
-            }
-        },
+
         "networkSecurityGroupRules": {
             "type": "Array",
             "defaultValue": [
